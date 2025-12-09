@@ -236,65 +236,62 @@
       
 
   <script>
-    // Simple page routing
-    function show(id){document.querySelectorAll('.page').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
-    document.getElementById('to2').addEventListener('click',()=>show('page2'))
-    document.getElementById('to3').addEventListener('click',()=>show('page3'))
-    document.getElementById('to1').addEventListener('click',()=>show('page1'))
-    document.getElementById('back1').addEventListener('click',()=>show('page1'))
-    document.getElementById('back2').addEventListener('click',()=>show('page2'))
+  // Simple page routing
+  function show(id){
+    document.querySelectorAll('.page')
+      .forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-    // Image replacement via file inputs
-    function bindImage(fileInputId, imgId){
-      const file = document.getElementById(fileInputId)
-      const img = document.getElementById(imgId)
-      file.addEventListener('change', e=>{
-        const f = e.target.files[0]
-        if(!f) return
-        const reader = new FileReader()
-        reader.onload = ev=> img.src = ev.target.result
-        reader.readAsDataURL(f)
-      })
-      // also allow clicking the image to open picker
-      img.style.cursor = 'pointer'
-      img.addEventListener('click', ()=> file.click())
-    }
-    bindImage('file1','img1')
-    bindImage('file2','img2')
-    bindImage('fileG1','g1')
-    bindImage('fileG2','g2')
-    bindImage('fileG3','g3')
-    bindImage('fileG4','g4')
+  // tombol pindah halaman
+  document.getElementById('to2').addEventListener('click',()=>show('page2'));
+  document.getElementById('to3').addEventListener('click',()=>show('page3'));
 
-    // audio upload
-    const fileSong = document.getElementById('fileSong')
-    const aud = document.getElementById('song')
-    const audsrc = document.getElementById('audsrc')
-    fileSong.addEventListener('change', e=>{
+  // tombol kembali yg benar
+  document.getElementById('back1').addEventListener('click',()=>show('page1'));
+  document.getElementById('back2').addEventListener('click',()=>show('page2'));
+
+  // Image replacement via file inputs
+  function bindImage(fileInputId, imgId){
+    const file = document.getElementById(fileInputId)
+    const img = document.getElementById(imgId)
+    if(!file || !img) return;
+
+    file.addEventListener('change', e=>{
       const f = e.target.files[0]
       if(!f) return
-      const url = URL.createObjectURL(f)
-      audsrc.src = url
-      aud.load()
-      aud.play().catch(()=>{})
+      const reader = new FileReader()
+      reader.onload = ev=> img.src = ev.target.result
+      reader.readAsDataURL(f)
     })
 
-    // Randomize shooting star positions slightly for variety
-    document.querySelectorAll('.shoot').forEach((el,i)=>{
-      el.style.left = (8 + i*34) + '%'
-      el.style.animationDuration = (4 + i*1.6) + 's'
-      el.style.animationDelay = (i*1.3) + 's'
-    })
+    // klik gambar untuk ganti foto
+    img.style.cursor = 'pointer'
+    img.addEventListener('click', ()=> file.click())
+  }
 
-    // add a small press animation to all buttons for extra cute feeling
-    document.querySelectorAll('.btn').forEach(b=>{
-      b.addEventListener('mousedown', ()=> b.style.transform = 'translateY(3px) scale(.99)')
-      b.addEventListener('mouseup', ()=> b.style.transform = '')
-      b.addEventListener('touchstart', ()=> b.style.transform = 'translateY(3px) scale(.99)')
-      b.addEventListener('touchend', ()=> b.style.transform = '')
-    })
+  bindImage('file1','img1')
+  bindImage('file2','img2')
+  bindImage('fileG1','g1')
+  bindImage('fileG2','g2')
+  bindImage('fileG3','g3')
+  bindImage('fileG4','g4')
 
-  </script>
+  // Randomize shooting stars
+  document.querySelectorAll('.shoot').forEach((el,i)=>{
+    el.style.left = (8 + i*34) + '%'
+    el.style.animationDuration = (4 + i*1.6) + 's'
+    el.style.animationDelay = (i*1.3) + 's'
+  })
+
+  // animasi tombol ketika ditekan
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('mousedown', ()=> b.style.transform = 'translateY(3px) scale(.99)')
+    b.addEventListener('mouseup', ()=> b.style.transform = '')
+    b.addEventListener('touchstart', ()=> b.style.transform = 'translateY(3px) scale(.99)')
+    b.addEventListener('touchend', ()=> b.style.transform = '')
+  })
+</script>
 </body>
 </html>
 
