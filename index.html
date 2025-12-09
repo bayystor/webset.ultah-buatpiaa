@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buatt deaa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@300;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060617;
+      --card:#0f1724cc;
+      --accent:#8be9fd;
+      --pink:#ff7eb6;
+      --glass: rgba(255,255,255,0.06);
+      --btn-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Nunito',system-ui,Segoe UI,Roboto,'Baloo 2',sans-serif;background:var(--bg);color:#fff}
+
+    /* Starry background */
+    .sky{position:fixed;inset:0;overflow:hidden;z-index:-2}
+    .stars, .stars2, .stars3{position:absolute;inset:0;background-repeat:repeat;}
+    .stars{background-image:radial-gradient(#ffffff11 1px, transparent 1px);background-size:4px 4px;opacity:0.9}
+    .stars2{background-image:radial-gradient(#ffffff0f 1px, transparent 1px);background-size:6px 6px;opacity:0.6;transform:translateY(-50px)}
+    .stars3{background-image:radial-gradient(#ffffff08 1px, transparent 1px);background-size:8px 8px;opacity:0.4;transform:translateY(-120px)}
+
+    /* Falling stars container */
+    .falling {position:absolute;inset:0;pointer-events:none;}
+    .shoot{
+      position:absolute;left:50%;top:-10px;width:2px;height:120px;background:linear-gradient(90deg,#fff, rgba(255,255,255,0));opacity:0;transform:rotate(-25deg);border-radius:2px;filter:blur(0.6px);
+      animation:shoot 5s linear infinite;
+    }
+    @keyframes shoot{
+      0%{opacity:0;transform:translateX(0) translateY(-40vh) rotate(-30deg) scaleY(0.2)}
+      10%{opacity:1}
+      100%{opacity:0;transform:translateX(-120vw) translateY(120vh) rotate(-30deg) scaleY(1)}
+    }
+
+    /* Layout */
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+    .card{width:920px;max-width:95%;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:20px;padding:28px;box-shadow:var(--btn-shadow);backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.04)}
+
+    h1.title{font-family:'Baloo 2',cursive;margin:0 0 12px;font-size:36px;color:var(--pink);text-shadow:0 6px 20px rgba(255,126,182,0.08)}
+    p.lead{margin:0 0 18px;color:#dfefffcc}
+
+    .center{display:flex;flex-direction:column;align-items:center;gap:14px}
+
+    .hero-img{width:320px;height:320px;border-radius:16px;object-fit:cover;background:linear-gradient(135deg,#111 0%, #1b1530 100%);border:1px solid rgba(255,255,255,0.06)}
+    .img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .thumb{width:100%;height:160px;border-radius:12px;object-fit:cover}
+
+    .btn{appearance:none;border:0;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--pink));color:#031;cursor:pointer;font-weight:700;box-shadow:0 8px 30px rgba(139,233,253,0.12);transition:transform .14s cubic-bezier(.2,.9,.2,1), box-shadow .14s}
+    .btn:active{transform:translateY(3px) scale(.99);box-shadow:0 4px 14px rgba(0,0,0,0.5)}
+
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+
+    /* small details */
+    .note{font-size:14px;color:#d7eaff88;text-align:center}
+    .controls{display:flex;gap:12px;align-items:center}
+
+    /* page sections */
+    section.page{display:none}
+    section.page.active{display:block}
+
+    /* music player styling */
+    .audio-wrap{display:flex;flex-direction:column;gap:10px;align-items:center}
+    audio{width:100%;max-width:640px;border-radius:10px}
+
+    footer{margin-top:14px;text-align:center;color:#aacbff66}
+
+    /* small responsive */
+    @media(max-width:640px){
+      .hero-img{width:90vw;height:90vw}
+      .card{padding:18px}
+      h1.title{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    <div class="falling">
+      
+      <!-- multiple shooting stars with randomized positions via JS -->
+      <div class="shoot" style="left:10%;animation-delay:0s"></div>
+      <div class="shoot" style="left:60%;animation-delay:1.6s"></div>
+      <div class="shoot" style="left:80%;animation-delay:3s"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+
+      <!-- PAGE 1 -->
+      <section id="page1" class="page active">
+  <div class="center">
+    <h1 class="title">Welcomeee Zerviaaaa!</h1>
+
+    <img 
+      src="https://files.catbox.moe/z8u40r"
+      alt="Foto bisa diganti"
+      style="
+        width:250px;
+        height:300px;
+        border-radius:50%;
+        object-fit:cover;
+        display:block;
+        margin:auto;
+      "
+    />
+
+    <div class="controls">
+      <input type="file" id="file1" accept="image/*" style="display:none">
+      <button class="btn" id="to2">Pergi ke Halaman 2</button>
+    </div>
+
+  </div>
+</section>
+
+      <!-- PAGE 2 -->
+     <section id="page2" class="page">
+  <div class="center">
+    <h1 class="title" style="color: #ffd47a;">SELMATT ULANGG TAHUNN                                                  PIAAA HARIII INII HARII YANG KAU TUNGGUUUU</h1>
+
+    <img 
+      id="img2"
+      src="https://files.catbox.moe/gmrnjn.jpg"
+      alt="Foto bisa diganti"
+      style="
+        width:400px;
+        height:450px;
+        border-radius:20px;
+        object-fit:cover;
+      "
+    />
+
+          <div class="controls">
+</div>
+
+<p class="lead" style="max-width:820px;text-align:center;margin-top:8px;">
+  HBD YAA SAYANGG MOGAA PANJAGG UMURRRR SEHATT SELALUU LANJUT NYAA DOAA SENDIRI DAH GEDE,
+  MAKASIH YA UDAH NEMENIN AKU SAMPE SEKARANG, DARI AKU SUSAH SAMPE SENENG AKU SAYANG SAMA KAMU
+  JADI JAN PERGI YAAA, SEHATT SEHATTT YAA NONA MANISS
+</p>
+
+<!-- ⭐ LAGU DITARUH DI SINI ⭐ -->
+<audio controls style="margin-top:12px;width:80%;">
+  <source src="https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7269080508386659078.mp3" type="audio/mpeg">
+  Browsermu tidak mendukung audio.
+</audio>
+
+<div class="controls">
+  <button class="btn" id="to3">Pergi ke Halaman 3</button>
+  <button class="btn btn-ghost" id="back1">Kembali</button>
+</div>
+
+</div>
+</section>
+
+      <!-- PAGE 3 -->
+<section id="page3" class="page">  
+  <div class="center">  
+    <h1 class="title" style="color:#8be9fd; text-align:center; font-size:22px;">  
+      HALOOO PIAAAAAAA LIATT DEHHH SEBERAPAA BAHAGIAA KUU PASS KETEMUU KAMUU,  
+      SENYUM KU BEGITUU CERIAAAA, MAKASIHH YAAAAAAA UDAHHHHHH MAUU SAMAA ORANGGG KAYAAA AKUUUU,  
+      SEHTT SEHATTT YAAA BUNGAA FAVORIT KU  
+    </h1>  
+
+    <div class="img-grid" style="  
+      display:flex;  
+      justify-content:center;  
+      gap:15px;  
+      flex-wrap:wrap;  
+    ">  
+      <img id="g1" class="thumb" src="https://files.catbox.moe/pu8nl8.jpg" alt="1" style="width:150px; height:200px; border-radius:12px; object-fit:cover;">  
+      <img id="g2" class="thumb" src="https://files.catbox.moe/wz3mm0.jpg" alt="2" style="width:150px; height:200px; border-radius:12px; object-fit:cover;">  
+      <img id="g3" class="thumb" src="https://files.catbox.moe/im7f3z.jpg" alt="3" style="width:150px; height:200px; border-radius:12px; object-fit:cover;">  
+      <img id="g4" class="thumb" src="https://files.catbox.moe/s6w19g.jpg" alt="4" style="width:150px; height:200px; border-radius:12px; object-fit:cover;">  
+    </div>  
+
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn btn-primary" id="dropCakeBtn">Jatuhkan 🎂</button>
+    </div>
+
+    <div class="controls" style="margin-top:15px;">  
+      <button class="btn btn-ghost" id="back2">Kembali</button>  
+    </div>
+
+  </div>  
+</section>
+
+<style>
+  .cake-fall {
+    position: fixed;
+    top: -50px;
+    font-size: 40px;
+    animation: fallAnimation linear forwards;
+  }
+  @keyframes fallAnimation {
+    0% {
+      opacity: 1;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(110vh);
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("dropCakeBtn").addEventListener("click", function() {
+    for(let i = 0; i < 20; i++) { 
+      let cake = document.createElement("div");
+      cake.classList.add("cake-fall");
+      cake.textContent = "🎂";
+      cake.style.left = Math.random() * window.innerWidth + "px";
+      cake.style.animationDuration = (Math.random() * 2 + 2) + "s";
+      document.body.appendChild(cake);
+
+      setTimeout(() => {
+        cake.remove();
+      }, 4000);
+    }
+  });
+</script>
+
+<script>
+  document.getElementById("cakeButton").addEventListener("click", function() {
+    const box = document.getElementById("cakeBox");
+    box.innerHTML += " 🎂 ";
+  });
+</script>
+      
+
+  <script>
+    // Simple page routing
+    function show(id){document.querySelectorAll('.page').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+    document.getElementById('to2').addEventListener('click',()=>show('page2'))
+    document.getElementById('to3').addEventListener('click',()=>show('page3'))
+    document.getElementById('to1').addEventListener('click',()=>show('page1'))
+    document.getElementById('back1').addEventListener('click',()=>show('page1'))
+    document.getElementById('back2').addEventListener('click',()=>show('page2'))
+
+    // Image replacement via file inputs
+    function bindImage(fileInputId, imgId){
+      const file = document.getElementById(fileInputId)
+      const img = document.getElementById(imgId)
+      file.addEventListener('change', e=>{
+        const f = e.target.files[0]
+        if(!f) return
+        const reader = new FileReader()
+        reader.onload = ev=> img.src = ev.target.result
+        reader.readAsDataURL(f)
+      })
+      // also allow clicking the image to open picker
+      img.style.cursor = 'pointer'
+      img.addEventListener('click', ()=> file.click())
+    }
+    bindImage('file1','img1')
+    bindImage('file2','img2')
+    bindImage('fileG1','g1')
+    bindImage('fileG2','g2')
+    bindImage('fileG3','g3')
+    bindImage('fileG4','g4')
+
+    // audio upload
+    const fileSong = document.getElementById('fileSong')
+    const aud = document.getElementById('song')
+    const audsrc = document.getElementById('audsrc')
+    fileSong.addEventListener('change', e=>{
+      const f = e.target.files[0]
+      if(!f) return
+      const url = URL.createObjectURL(f)
+      audsrc.src = url
+      aud.load()
+      aud.play().catch(()=>{})
+    })
+
+    // Randomize shooting star positions slightly for variety
+    document.querySelectorAll('.shoot').forEach((el,i)=>{
+      el.style.left = (8 + i*34) + '%'
+      el.style.animationDuration = (4 + i*1.6) + 's'
+      el.style.animationDelay = (i*1.3) + 's'
+    })
+
+    // add a small press animation to all buttons for extra cute feeling
+    document.querySelectorAll('.btn').forEach(b=>{
+      b.addEventListener('mousedown', ()=> b.style.transform = 'translateY(3px) scale(.99)')
+      b.addEventListener('mouseup', ()=> b.style.transform = '')
+      b.addEventListener('touchstart', ()=> b.style.transform = 'translateY(3px) scale(.99)')
+      b.addEventListener('touchend', ()=> b.style.transform = '')
+    })
+
+  </script>
+</body>
+</html>
+
